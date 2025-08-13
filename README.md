@@ -109,50 +109,54 @@ Non-technical Audience: The generated images and the Key Findings section of thi
 
 
 ## Unfixed Bugs
-* Please mention unfixed bugs and why they were not fixed. This section should include shortcomings of the frameworks or technologies used. Although time can be a significant variable to consider, paucity of time and difficulty understanding implementation are not valid reasons to leave bugs unfixed.
-* Did you recognise gaps in your knowledge, and how did you address them?
-* If applicable, include evidence of feedback received (from peers or instructors) and how it improved your approach or understanding.
+No critical bugs were encountered during the analysis phase. The scripts run as intended and produce the expected outputs. One minor shortcoming of the Matplotlib library is that the plots are not interactive, which could be a useful feature for a dashboard. However, this was not a priority for this project's scope. I addressed this by acknowledging it as a limitation and noting that a library like Plotly would be a better choice for interactive visualizations in future iterations.
+
 
 ## Development Roadmap
-* What challenges did you face, and what strategies were used to overcome these challenges?
-* What new skills or tools do you plan to learn next based on your project experience? 
+Challenges and Strategies: A key challenge was efficiently merging the three large datasets while handling the different data types and missing values. The strategy to overcome this was to use the powerful data manipulation capabilities of the pandas library, specifically the merge() and fillna() methods, and to carefully inspect the dataframes at each step.
+
+Future Skills: Based on this experience, I plan to learn Plotly for creating interactive and dynamic visualizations. I also want to explore predictive modeling and machine learning with libraries like Scikit-learn to build a sales forecasting model.
 
 ## Deployment
 ### Heroku
 
-* The App live link is: https://YOUR_APP_NAME.herokuapp.com/ 
-* Set the runtime.txt Python version to a [Heroku-20](https://devcenter.heroku.com/articles/python-support#supported-runtimes) stack currently supported version.
-* The project was deployed to Heroku using the following steps.
+This project is not a web application and does not require deployment to Heroku. However, if it were to be deployed as a dashboard, the process would follow these steps:
 
-1. Log in to Heroku and create an App
-2. From the Deploy tab, select GitHub as the deployment method.
-3. Select your repository name and click Search. Once it is found, click Connect.
-4. Select the branch you want to deploy, then click Deploy Branch.
-5. The deployment process should happen smoothly if all deployment files are fully functional. Click now the button Open App on the top of the page to access your App.
-6. If the slug size is too large then add large files not required for the app to the .slugignore file.
+1. Log in to Heroku and create an App.
+
+2. Select GitHub as the deployment method.
+
+3. Connect the repository.
+
+4. Set the runtime.txt Python version to a supported version for the Heroku stack.
+
+Deploy the chosen branch.
+
+5. If the slug size is too large, add large files not required for the app to the .slugignore file.
+
 
 
 ## Main Data Analysis Libraries
-* Here you should list the libraries you used in the project and provide an example(s) of how you used these libraries.
+pandas: Used for all data manipulation, cleaning, and transformation tasks.
 
+Example: Merging the datasets df_sales = pd.merge(df_sales, df_features, on=['Store', 'Date', 'IsHoliday'], how='left').
+
+matplotlib: Used for creating static visualizations.
+
+Example: Generating a line plot plt.plot(sales_by_week['Date'], sales_by_week['Weekly_Sales']).
+
+jupyter: The environment used to run the ETL pipeline and write the initial analysis code.
 
 ## Credits 
-
-* In this section, you need to reference where you got your content, media and extra help from. It is common practice to use code from other repositories and tutorials, however, it is important to be very specific about these sources to avoid plagiarism. 
-* You can break the credits section up into Content and Media, depending on what you have included in your project. 
-
 ### Content 
+The project does not include any external media files, as all images were generated directly from the analysis scripts.
 
-- The text for the Home page was taken from Wikipedia Article A
-- Instructions on how to implement form validation on the Sign-Up page was taken from [Specific YouTube Tutorial](https://www.youtube.com/)
-- The icons in the footer were taken from [Font Awesome](https://fontawesome.com/)
+The retail sales dataset was sourced from a Kaggle competition: Retail Sales Data Analysis.
+
+Instructions on how to structure a project README.md were adapted from the Code Institute template.
 
 ### Media
-
-- The photos used on the home and sign-up page are from This Open-Source site
-- The images used for the gallery page were taken from this other open-source site
-
-
+The project does not include any external media files, as all images were generated directly from the analysis scripts.
 
 ## Acknowledgements (optional)
-* Thank the people who provided support through this project.
+I would like to thank my peers for their valuable feedback during the development process and my instructors and coaches for guidance on best practices in data analysis.
