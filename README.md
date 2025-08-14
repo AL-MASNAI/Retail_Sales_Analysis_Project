@@ -162,7 +162,7 @@ This scatter plot visualizes the relationship between markdown amounts and weekl
 These `.png` images are automatically saved to their respective folders in the `outputs` directory. They provide a quick overview of the data.
 
 **1. Overall Weekly Sales Trend**
-![Overall Weekly Sales Trend](outputs/trend_analysis/overall_weekly_sales_trend.png)
+![Overall Weekly Sales Trend](jupyter_notebooks\outputs\trend_analysis\overall_weekly_sales_trend.png)
 
 **2. Sales by Holiday Impact**
 ![Sales by Holiday Impact](outputs/impact_analysis/sales_by_holiday_impact.png)
