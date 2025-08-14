@@ -1,79 +1,90 @@
-"""
-Impact Analysis
-
-This script visualizes the impact of markdowns on weekly sales by comparing
-holiday and non-holiday periods. It helps assess the effectiveness of
-promotional activities using processed data from the ETL pipeline.
-"""
-
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 import os
 
 # 🔧 Config
-DATA_PATH = os.path.join(os.path.dirname(__file__), '..', 'data', 'processed_data', 'cleaned_sales_data.csv')
+DATA_FILENAME = 'cleaned_sales_data.csv'
+DATA_PATH = os.path.join(os.path.dirname(__file__), '..', 'data', 'processed_data', DATA_FILENAME)
 OUTPUT_DIR = os.path.join(os.path.dirname(__file__), '..', 'outputs', 'impact_analysis')
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-# 📥 Load data
+
+# 📥 Load and validate data
 def load_data(path):
+    """Loads and validates the cleaned sales data."""
     try:
         df = pd.read_csv(path, parse_dates=['Date'])
+        if df.empty or 'Weekly_Sales' not in df.columns:
+            raise ValueError("Missing required columns or empty dataset.")
         print(f"✅ Loaded data from '{path}'")
         return df
     except Exception as e:
-        print(f"❌ Failed to load data: {e}")
+        print(f"❌ Error loading data: {e}")
         raise
 
-# 📊 Perform impact analysis
+
+# 📊 Perform Impact Analysis
 def perform_impact_analysis(df):
-    if 'MarkDown1' not in df.columns:
-        print("⚠️ 'MarkDown1' column not found. Skipping markdown analysis.")
-        df['MarkDown1'] = 0
-
-    impact_df = df.groupby('IsHoliday').agg(
-        Average_Weekly_Sales=('Weekly_Sales', 'mean'),
-        Average_Markdown=('MarkDown1', 'mean')
-    ).reset_index()
-
+    """
+    Prepares data for impact analysis plots.
+    """
+    impact_df = df.copy()
+    impact_df['Holiday_Flag'] = impact_df['IsHoliday'].apply(
+        lambda x: 'Holiday Week' if x == True else 'Non-Holiday Week'
+    )
+    
+    # Calculate a 'Total_Markdown' column
+    markdown_cols = [col for col in impact_df.columns if 'markdown' in col.lower()]
+    impact_df['Total_Markdown'] = impact_df[markdown_cols].sum(axis=1) if markdown_cols else 0
+    
     return impact_df
 
-# 📈 Plot sales impact
-def plot_sales_impact(impact_df, output_dir):
+
+# 📈 Plot sales impact by holiday
+def plot_sales_impact(df, output_dir):
+    """
+    Creates a bar chart to compare average sales on holiday vs. non-holiday weeks.
+    """
     plt.figure(figsize=(10, 6))
-    plt.bar(impact_df['IsHoliday'].astype(str), impact_df['Average_Weekly_Sales'], color=['skyblue', 'salmon'])
+    # This line has been updated to fix the FutureWarning
+    sns.barplot(data=df, x='Holiday_Flag', y='Weekly_Sales', hue='Holiday_Flag', palette='viridis', errorbar=None, legend=False)
     plt.title('Average Weekly Sales: Holiday vs. Non-Holiday')
-    plt.xlabel('Is Holiday Week?')
+    plt.xlabel('Week Type')
     plt.ylabel('Average Weekly Sales')
-    plt.xticks([0, 1], ['False', 'True'])
     plt.tight_layout()
-
-    path = os.path.join(output_dir, 'sales_by_holiday_impact.png')
-    plt.savefig(path)
+    plt.savefig(os.path.join(output_dir, 'sales_by_holiday_impact.png'))
     plt.close()
-    print(f"📊 Saved sales impact plot to '{path}'")
+    print("📊 Saved sales impact by holiday plot.")
 
-# 📈 Plot markdown impact
-def plot_markdown_impact(impact_df, output_dir):
-    plt.figure(figsize=(10, 6))
-    plt.bar(impact_df['IsHoliday'].astype(str), impact_df['Average_Markdown'], color=['lightgreen', 'orange'])
-    plt.title('Average Markdown Amount: Holiday vs. Non-Holiday')
-    plt.xlabel('Is Holiday Week?')
-    plt.ylabel('Average Markdown')
-    plt.xticks([0, 1], ['False', 'True'])
+
+# 📉 Plot markdown impact on sales
+def plot_markdown_impact(df, output_dir):
+    """
+    Creates a scatter plot to visualize the relationship between markdown and sales.
+    """
+    plt.figure(figsize=(12, 7))
+    sns.scatterplot(data=df, x='Total_Markdown', y='Weekly_Sales', hue='Holiday_Flag', alpha=0.6)
+    plt.title('Markdown Impact on Weekly Sales')
+    plt.xlabel('Total Markdown')
+    plt.ylabel('Weekly Sales')
     plt.tight_layout()
-
-    path = os.path.join(output_dir, 'markdown_by_holiday_impact.png')
-    plt.savefig(path)
+    plt.savefig(os.path.join(output_dir, 'markdown_by_holiday_impact.png'))
     plt.close()
-    print(f"📊 Saved markdown impact plot to '{path}'")
+    print("📊 Saved markdown impact on sales plot.")
+
 
 # 🚀 Main
 def main():
-    df = load_data(DATA_PATH)
-    impact_df = perform_impact_analysis(df)
-    plot_sales_impact(impact_df, OUTPUT_DIR)
-    plot_markdown_impact(impact_df, OUTPUT_DIR)
+    try:
+        df = load_data(DATA_PATH)
+        impact_df = perform_impact_analysis(df)
+        plot_sales_impact(impact_df, OUTPUT_DIR)
+        plot_markdown_impact(impact_df, OUTPUT_DIR)
+    except Exception as e:
+        print(f"An error occurred during script execution: {e}")
 
+
+# Call the main function
 if __name__ == '__main__':
     main()
