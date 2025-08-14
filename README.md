@@ -75,7 +75,7 @@ The analysis followed a structured pipeline based on the Extract, Transform, Loa
 
 ### Rationale for Methodologies
 
-I chose a quantitative research methodology focused on descriptive and comparative analysis. This approach was ideal because the business requirements were to understand and compare existing patterns and trends in the sales data. The ETL pipeline followed by visualization allowed for a systematic and reproducible way to answer the business questions.
+I chose a quantitative research methodology focused on descriptive and comparative analysis. This approach was ideal because the business requirements were to understand and compare existing patterns and trends in the sales data. The ETL pipeline, followed by visualization, allowed for a systematic and reproducible way to answer the business questions.
 
 ---
 
@@ -159,7 +159,7 @@ This scatter plot visualizes the relationship between markdown amounts and weekl
 
 ### Static Visualizations
 
-These `.png` images are automatically saved to their respective folders in the `outputs` directory. They provide a quick overview of the data.
+These `.png` images are automatically saved to their respective folders in the`outputs` directory. They provide a quick overview of the data.
 
 **1. Overall Weekly Sales Trend**
 ![Overall Weekly Sales Trend](jupyter_notebooks\outputs\trend_analysis\overall_weekly_sales_trend.png)
