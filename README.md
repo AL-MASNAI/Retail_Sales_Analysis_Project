@@ -153,17 +153,18 @@ The interactive plots, created with Plotly, are designed for a deeper, hands-on 
 
 **1. Interactive Sales Trend Plot**
 This line chart shows the overall weekly sales trend. It allows users to zoom in on specific periods.
-![Interactive Sales Trend Plot](jupyter_notebooks/outputs/trend_analysis/interactive_sales_trend.png)
+
+![Interactive Sales Trend Plot](jupyter_notebooks/outputs/trend_analysis/overall_weekly_sales_trend.png)
 
 **2. Interactive Sales Comparison by Store Type**
 This bar chart compares the average weekly sales across different store types.
-![Interactive Sales Comparison by Store Type](jupyter_notebooks/outputs/comparative_analysis/interactive_sales_by_store_type.png)
+
+![Interactive Sales Comparison by Store Type](jupyter_notebooks/outputs/comparative_analysis/Interactive_sales_by_store_type_screenshot.png)
 
 **3. Interactive Markdown Impact Scatter Plot**
 This scatter plot visualizes the relationship between markdown amounts and weekly sales.
-![Interactive Markdown Impact Scatter Plot](jupyter_notebooks/outputs/impact_analysis/interactive_markdown_impact.png)
 
----
+![Interactive Markdown Impact Scatter Plot](jupyter_notebooks/outputs/impact_analysis/markdown_by_holiday_impact.png)
 
 ## Future Work & Limitations
 
