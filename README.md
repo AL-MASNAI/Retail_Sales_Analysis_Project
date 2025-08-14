@@ -1,162 +1,207 @@
-# Retail Sales Data Analysis Project
-
 
 # ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
+# Retail Sales Data Analysis Project
 
 ## Dataset Content
-* The analysis is based on a retail sales dataset provided by a Kaggle. The dataset is comprised of three key files: Sales.csv, Features.csv, and Stores.csv. These files contain transactional data, external factors such as holidays and markdown promotions, and store-specific details, respectively. The dataset is of a manageable size, allowing for efficient processing without exceeding typical repository size limits.
 
+The analysis is based on a retail sales dataset from Kaggle. The dataset is comprised of three key files: `Sales.csv`, `Features.csv`, and `Stores.csv`. These files contain transactional data, external factors such as holidays and markdown promotions, and store-specific details, respectively. The dataset is of a manageable size, allowing for efficient processing without exceeding typical repository size limits.
+
+-----
+
+## Project Structure
+
+The repository is organized to keep the data, code, and output separate and easy to manage.
+
+```
+├── .vscode/                 # VS Code settings and launch configurations
+├── data/                    # Contains all data files
+│   ├── raw/                 # Original, untouched data
+│   └── processed_data/      # The final cleaned dataset
+├── outputs/                 # Visualization outputs
+│   ├── descriptive_statistics/
+│   ├── trend_analysis/
+│   ├── impact_analysis/
+│   └── comparative_analysis/
+├── images/                  # Screenshots for README.md
+├── jupyter_notebooks/       # Jupyter notebooks and Python scripts
+│   ├── ETL_Pipeline.ipynb   # Notebook for data cleaning and processing
+│   ├── interactive_visualisations.ipynb # Notebook for interactive Plotly charts
+│   └── data_visualisation/  # Python scripts for static plots
+│       ├── 1_descriptive_statistics.py
+│       ├── 2_trend_analysis.py
+│       ├── 3_impact_analysis.py
+│       └── 4_comparative_analysis.py
+├── .gitignore               # Specifies files and directories to ignore in Git
+├── README.md                # Project overview and documentation
+└── requirements.txt         # List of project dependencies
+```
+
+-----
 
 ## Business Requirements
-* The business requirements for this project are to provide actionable insights for a retail company. The key requirements are to:
 
-1. Identify Sales Trends: Understand weekly, monthly, and seasonal sales patterns.
+The business requirements for this project are to provide actionable insights for a retail company. The key requirements are to:
 
-2. Assess Promotional Impact: Quantify the effect of holiday weeks and markdown promotions on sales performance.
+1.  **Identify Sales Trends:** Understand weekly, monthly, and seasonal sales patterns.
+2.  **Assess Promotional Impact:** Quantify the effect of holiday weeks and markdown promotions on sales performance.
+3.  **Compare Store Performance:** Benchmark the performance of different store types (A, B, C) and individual stores against each other.
 
-3. Compare Store Performance: Benchmark the performance of different store types (A, B, C) and individual stores against each other.
+-----
 
+## Key Findings
 
-## Hypothesis and how to validate?
-* Hypothesis 1: Holiday weeks have a significant positive impact on weekly sales.
-    - Validation: I will validate this by comparing the average weekly sales during holiday weeks (e.g., Thanksgiving, Christmas) to the average weekly sales during non-holiday weeks. Visualizations will show sales spikes during these periods.
-* Hypothesis 2: Store type is a major predictor of sales performance, with larger store types (e.g., Type A) outperforming smaller ones.
-   - Validation: I will validate this by calculating and visualizing the average weekly sales for each store type. A comparative analysis will show a clear hierarchy in sales performance based on store type.
+Based on the ETL and data visualization, the following key insights were uncovered:
 
-* Hypothesis 3: Markdown promotions are correlated with an increase in sales.
-   - Validation: I will validate this by plotting markdown values against weekly sales. The visualization will highlight a relationship between markdown events and a corresponding increase in sales, especially during holiday periods.
+  * **Sales Trends:** The overall sales trend shows clear seasonality, with significant peaks during holiday periods. By comparing individual stores (as shown in the `trend_analysis` plots), we can see that while all stores follow a similar seasonal pattern, some consistently outperform others.
+  * **Holiday & Promotional Impact:** Holidays have a substantial positive impact on sales, with average weekly sales being significantly higher during holiday weeks. The interactive scatter plot in the Jupyter Notebook visualizes a clear correlation between markdown promotions and an increase in sales, especially during these key shopping times.
+  * **Comparative Performance:** Store types **A** generally have the highest average weekly sales, followed by type **B** and then type **C**. This indicates that store size and type are major factors in sales performance, as evidenced by the bar charts in the `comparative_analysis` output.
 
+-----
 
+## Hypothesis and Validation
+
+  * **Hypothesis 1:** Holiday weeks have a significant positive impact on weekly sales.
+      * **Validation:** I will validate this by comparing the average weekly sales during holiday weeks to the average weekly sales during non-holiday weeks. Visualizations will show sales spikes during these periods.
+  * **Hypothesis 2:** Store type is a major predictor of sales performance, with larger store types (e.g., Type A) outperforming smaller ones.
+      * **Validation:** I will validate this by calculating and visualizing the average weekly sales for each store type. A comparative analysis will show a clear hierarchy in sales performance based on store type.
+  * **Hypothesis 3:** Markdown promotions are correlated with an increase in sales.
+      * **Validation:** I will validate this by plotting markdown values against weekly sales. The visualization will highlight a relationship between markdown events and a corresponding increase in sales, especially during holiday periods.
+
+-----
 
 ## Project Plan
-* Outline the high-level steps taken for the analysis.
-The analysis followed a structured pipeline based on the Extract, Transform, Load (ETL) process detailed in the ETL_Pipeline.ipynb notebook.
 
-1. Extract: Raw data from three CSV files (Features.csv, Sales.csv, Stores.csv) was loaded into pandas DataFrames.
+The analysis followed a structured pipeline based on the Extract, Transform, Load (**ETL**) process, which is documented in the `ETL_Pipeline.ipynb` notebook.
 
-2. Transform: The data was cleaned, merged, and enhanced with new features.
+### Rationale for Methodologies
 
-3. Validate: Data quality checks were performed to ensure integrity after transformation.
+I chose a quantitative research methodology focused on descriptive and comparative analysis. This approach was ideal because the business requirements were to understand and compare existing patterns and trends in the sales data. The ETL pipeline followed by visualization allowed for a systematic and reproducible way to answer the business questions.
 
-4. Load: The final, cleaned dataset was saved as a single CSV file.
+-----
 
-5. Analyze: The cleaned data will be used for in-depth visualization and analysis.
+## The Rationale for Visualizations
 
+Each visualization was designed to directly address a core business requirement.
 
-* How was the data managed throughout the collection, processing, analysis and interpretation steps?
-Data was managed by separating raw and processed data. The original CSV files were left untouched in the data folder. A Jupyter Notebook (ETL_Pipeline.ipynb) was used for the entire data cleaning and processing workflow. The final cleaned dataset, cleaned_sales_data.csv, was saved as the output of this process. This approach ensures the raw data remains separate and the transformation steps are fully documented and reproducible.
+### 1\. Sales Trends
 
+  * **Rationale:** Line plots are used to show sales patterns over time, revealing seasonality and peaks.
+  * **Visualizations:**
+      * **Static:** `overall_weekly_sales_trend.png`
+      * **Interactive:** An interactive Plotly line chart in the `interactive_visualisations.ipynb` notebook.
 
-* Why did you choose the research methodologies you used?
-I chose a quantitative research methodology focused on descriptive and comparative analysis. This approach was ideal for this project because the business requirements were to understand and compare existing patterns and trends in the sales data. Using a pipeline of ETL followed by visualization allowed for a systematic and reproducible way to answer the business questions.
+### 2\. Promotional Impact
 
+  * **Rationale:** Bar charts and scatter plots are used to assess the impact of holidays and markdown promotions on sales.
+  * **Visualizations:**
+      * **Static:** `sales_by_holiday_impact.png` and `markdown_by_holiday_impact.png`
+      * **Interactive:** An interactive Plotly scatter plot in the `interactive_visualisations.ipynb` notebook.
 
-## The rationale to map the business requirements to the Data Visualisations
-Requirement: Identify Sales Trends.
+### 3\. Store Performance Comparison
 
-Rationale: To identify trends, I will use line plots. A plot of overall_sales_trend.png will show the sales patterns over time, revealing seasonality and peaks. Additional plots like selected_stores_sales_trend.png and selected_departments_sales_trend.png will allow for granular trend analysis and comparison.
+  * **Rationale:** Bar charts provide a clear visual comparison of average sales across different store types, making it easy to identify top performers.
+  * **Visualizations:**
+      * **Static:** `average_sales_per_store_type.png`
+      * **Interactive:** An interactive Plotly bar chart in the `interactive_visualisations.ipynb` notebook.
 
-Requirement: Assess Promotional Impact.
+-----
 
-Rationale: To assess the impact of promotions, a comparative bar chart and a scatter plot will be used. A bar chart sales_by_holiday_impact.png will effectively contrast sales during holiday and non-holiday weeks. A scatter plot markdown_by_holiday_impact.png will visualize the relationship between markdown values and sales, helping to identify a correlation.
+## Analysis Techniques Used
 
-Requirement: Compare Store Performance.
+The analysis is structured into a dedicated **Jupyter Notebook** for the ETL process, four Python scripts for static visualizations, and another notebook for interactive plots. This modular approach makes the code easy to read, maintain, and debug.
 
-Rationale: To compare performance, I will use bar charts. average_sales_per_store.png and average_sales_per_store_type.png will provide a clear visual comparison of average sales across different individual stores and store types, making it easy for stakeholders to see which stores are top performers.
+  * **Descriptive Statistics:** I calculated measures like mean and median to understand sales distribution.
+  * **Time Series Analysis:** I used line plots to visualize sales data over time to identify trends.
+  * **Interactive Data Exploration:** This is a key part of the project, where interactive plots created with **Plotly** allow for dynamic exploration of data.
 
-## Analysis techniques used
-* Methods and Justification
-The analysis relies on descriptive statistics and time series analysis.
+### Use of Generative AI Tools
 
-Descriptive Statistics: I will calculate and analyze measures like mean, median, and standard deviation for sales data. This is used to understand the central tendency and spread of sales across different stores and departments.
+Generative AI was used to assist in several key areas:
 
-Time Series Analysis: I will use line plots to visualize sales data over time, which is a fundamental technique for identifying trends, seasonality, and cycles.
+  * **Ideation:** Brainstorming different visualization types that could best represent the data.
+  * **Design Thinking:** Structuring the `README.md` and organizing the project workflow.
+  * **Code Optimization:** Refining and optimizing Python scripts for data cleaning and plotting.
 
-
-* How I Structured the Data Analysis
-The analysis is structured into four distinct, logical Python scripts (1_descriptive_statistics.py, 2_trend_analysis.py, etc.). This modular approach ensures that each script focuses on a single aspect of the business requirements. For example, 2_trend_analysis.py is solely responsible for generating all the trend-related plots, which makes the code easier to read, maintain, and debug.
-
-* Limitations and Challenges
-A limitation was the lack of more advanced forecasting techniques. The project focuses on historical analysis rather than predictive modeling. An alternative approach would have been to use models like ARIMA or Prophet to forecast future sales based on the historical data and holiday effects.
-
-* Use of Generative AI Tools
-Generative AI, specifically ChatGPT, was used to assist in several key areas:
-
-Ideation: I used it to brainstorm different visualization types that could best represent the data.
-
-Design Thinking: It helped me structure the README.md and organize the project workflow in a logical manner.
-
-Code Optimization: I used it to refine and optimize Python scripts for data cleaning and plotting, such as finding more efficient ways to merge dataframes or customize matplotlib plots.
-
-## Ethical considerations
-There were no significant data privacy or bias issues with this dataset. The data is anonymized, containing no personal customer information. It focuses solely on transactional and store-level data. The dataset is a sanitized and public-facing record from a competition, so there were no legal or societal issues to overcome.
+-----
 
 ## Dashboard Design
-Dashboard Pages and Content: The project did not include a live dashboard, but the analysis served as the foundation for a potential dashboard. Each script was designed to generate a single visual output that would serve as a widget on a dashboard page.
 
-Page 1: Sales Trends: Contains overall_sales_trend.png and selected_stores_sales_trend.png.
+The project did not include a live dashboard, but the analysis served as the foundation for a potential dashboard. The static plots are designed to be widgets, and the interactive Plotly plots serve as a prototype for a live dashboard.
 
-Page 2: Impact Analysis: Contains sales_by_holiday_impact.png and markdown_by_holiday_impact.png.
+### Static Visualizations
 
-Page 3: Comparative Analysis: Contains average_sales_per_store.png and average_sales_per_store_type.png.
+These `.png` images are automatically saved to their respective folders in the `outputs` directory. They provide a quick overview of the data.
 
-Communicating Insights:
+**1. Overall Weekly Sales Trend**
 
-Technical Audience: The detailed code and comments within the Jupyter Notebook (ETL_Pipeline.ipynb) and Python scripts (1_descriptive_statistics.py, etc.) are tailored for a technical audience.
+**2. Sales by Holiday Impact**
 
-Non-technical Audience: The generated images and the Key Findings section of this README.md were designed for a non-technical audience. The visualizations are clear and the accompanying text explains the findings in plain, business-oriented language.
+**3. Average Sales by Store Type**
 
+### Interactive Visualizations
 
-## Unfixed Bugs
-No critical bugs were encountered during the analysis phase. The scripts run as intended and produce the expected outputs. One minor shortcoming of the Matplotlib library is that the plots are not interactive, which could be a useful feature for a dashboard. However, this was not a priority for this project's scope. I addressed this by acknowledging it as a limitation and noting that a library like Plotly would be a better choice for interactive visualizations in future iterations.
+The interactive plots, created with Plotly, are designed for a deeper, hands-on exploration of the data and are best viewed by running the `interactive_visualisations.ipynb` notebook. Below are static images of these plots for quick reference.
 
+**1. Interactive Sales Trend Plot**
+This line chart shows the overall weekly sales trend. It allows users to zoom in on specific periods.
 
-## Development Roadmap
-Challenges and Strategies: A key challenge was efficiently merging the three large datasets while handling the different data types and missing values. The strategy to overcome this was to use the powerful data manipulation capabilities of the pandas library, specifically the merge() and fillna() methods, and to carefully inspect the dataframes at each step.
+**2. Interactive Sales Comparison by Store Type**
+This bar chart compares the average weekly sales across different store types.
 
-Future Skills: Based on this experience, I plan to learn Plotly for creating interactive and dynamic visualizations. I also want to explore predictive modeling and machine learning with libraries like Scikit-learn to build a sales forecasting model.
+**3. Interactive Markdown Impact Scatter Plot**
+This scatter plot visualizes the relationship between markdown amounts and weekly sales.
 
-## Deployment
-### Heroku
+-----
 
-This project is not a web application and does not require deployment to Heroku. However, if it were to be deployed as a dashboard, the process would follow these steps:
+## How to Run the Project
 
-1. Log in to Heroku and create an App.
+To run this project and generate all visualizations, follow these steps:
 
-2. Select GitHub as the deployment method.
+1.  **Clone the Repository:**
 
-3. Connect the repository.
+    ```bash
+    git clone <repository-url>
+    ```
 
-4. Set the runtime.txt Python version to a supported version for the Heroku stack.
+2.  **Activate your virtual environment and install dependencies:**
 
-Deploy the chosen branch.
+    ```bash
+    source .venv/Scripts/activate  # Or your platform's activation command
+    pip install -r requirements.txt
+    ```
 
-5. If the slug size is too large, add large files not required for the app to the .slugignore file.
+3.  **Run the ETL Pipeline:** Open and run all cells in the `ETL_Pipeline.ipynb` notebook.
 
+4.  **Generate Static Visualizations:** Run the Python scripts from your terminal.
 
+    ```bash
+    python jupyter_notebooks/data_visualisation/1_descriptive_statistics.py
+    python jupyter_notebooks/data_visualisation/2_trend_analysis.py
+    python jupyter_notebooks/data_visualisation/3_impact_analysis.py
+    python jupyter_notebooks/data_visualisation/4_comparative_analysis.py
+    ```
+
+5.  **View Interactive Visualizations:** Open `interactive_visualisations.ipynb` and run the cells.
+
+-----
 
 ## Main Data Analysis Libraries
-pandas: Used for all data manipulation, cleaning, and transformation tasks.
 
-Example: Merging the datasets df_sales = pd.merge(df_sales, df_features, on=['Store', 'Date', 'IsHoliday'], how='left').
+  * **`pandas`**: Used for all data manipulation, cleaning, and transformation tasks.
+  * **`matplotlib`**: Used for creating static visualizations.
+  * **`seaborn`**: Used to create more complex statistical plots.
+  * **`plotly`**: Used for creating interactive visualizations.
 
-matplotlib: Used for creating static visualizations.
+-----
 
-Example: Generating a line plot plt.plot(sales_by_week['Date'], sales_by_week['Weekly_Sales']).
+## Credits
 
-jupyter: The environment used to run the ETL pipeline and write the initial analysis code.
+  * **Content:** The project's data was sourced from a Kaggle competition: Retail Sales Data Analysis.
+  * **Media:** All visualization images were generated from the analysis scripts.
 
-## Credits 
-### Content 
-The project does not include any external media files, as all images were generated directly from the analysis scripts.
+-----
 
-The retail sales dataset was sourced from a Kaggle competition: Retail Sales Data Analysis.
+## Acknowledgements
 
-Instructions on how to structure a project README.md were adapted from the Code Institute template.
-
-### Media
-The project does not include any external media files, as all images were generated directly from the analysis scripts.
-
-## Acknowledgements (optional)
-I would like to thank my peers for their valuable feedback during the development process and my instructors and coaches for guidance on best practices in data analysis.
+I would like to thank my peers for their valuable feedback and my instructors and coaches for guidance on best practices in data analysis.
