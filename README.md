@@ -75,7 +75,7 @@ The analysis followed a structured pipeline based on the Extract, Transform, Loa
 
 ### Rationale for Methodologies
 
-I chose a quantitative research methodology focused on descriptive and comparative analysis. This approach was ideal because the business requirements were to understand and compare existing patterns and trends in the sales data. The ETL pipeline followed by visualization allowed for a systematic and reproducible way to answer the business questions.
+I chose a quantitative research methodology focused on descriptive and comparative analysis. This approach was ideal because the business requirements were to understand and compare existing patterns and trends in the sales data. The ETL pipeline, followed by visualization, allowed for a systematic and reproducible way to answer the business questions.
 
 ---
 
