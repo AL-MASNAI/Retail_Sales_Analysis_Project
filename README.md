@@ -159,7 +159,7 @@ This scatter plot visualizes the relationship between markdown amounts and weekl
 
 ### Static Visualizations
 
-These `.png` images are automatically saved to their respective folders in the `outputs` directory. They provide a quick overview of the data.
+These `.png` images are automatically saved to their respective folders in the`outputs` directory. They provide a quick overview of the data.
 
 **1. Overall Weekly Sales Trend**
 ![Overall Weekly Sales Trend](outputs/trend_analysis/overall_weekly_sales_trend.png)
