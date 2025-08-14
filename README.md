@@ -143,8 +143,9 @@ These `.png` images are automatically saved to their respective folders in the `
 
 **2. Sales by Holiday Impact**
 ![Sales by Holiday Impact](jupyter_notebooks/outputs/impact_analysis/sales_by_holiday_impact.png)
+
 **3. Average Sales by Store Type**
-![Average Sales by Store Type](jupyter_notebooks/outputs/comparative_analysis/average_sales_per_store_type.png)
+![Average Sales by Store Type](jupyter_notebooks/outputs/comparative_analysis/Interactive_sales_by_store_type_screenshot.png)
 
 ### Interactive Visualizations
 
