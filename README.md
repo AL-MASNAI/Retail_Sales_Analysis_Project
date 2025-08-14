@@ -139,29 +139,6 @@ The project did not include a live dashboard, but the analysis served as the fou
 These `.png` images are automatically saved to their respective folders in the `outputs` directory. They provide a quick overview of the data.
 
 **1. Overall Weekly Sales Trend**
-
-**2. Sales by Holiday Impact**
-
-**3. Average Sales by Store Type**
-
-### Interactive Visualizations
-
-The interactive plots, created with Plotly, are designed for a deeper, hands-on exploration of the data and are best viewed by running the `interactive_visualisations.ipynb` notebook. Below are static images of these plots for quick reference.
-
-**1. Interactive Sales Trend Plot**
-This line chart shows the overall weekly sales trend. It allows users to zoom in on specific periods.
-
-**2. Interactive Sales Comparison by Store Type**
-This bar chart compares the average weekly sales across different store types.
-
-**3. Interactive Markdown Impact Scatter Plot**
-This scatter plot visualizes the relationship between markdown amounts and weekly sales.
-
-### Static Visualizations
-
-These `.png` images are automatically saved to their respective folders in the `outputs` directory. They provide a quick overview of the data.
-
-**1. Overall Weekly Sales Trend**
 ![Overall Weekly Sales Trend](jupyter_notebooks/outputs/trend_analysis/overall_weekly_sales_trend.png)
 
 **2. Sales by Holiday Impact**
